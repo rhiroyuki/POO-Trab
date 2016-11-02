@@ -6,6 +6,8 @@
 
 package fatec.poo.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author ricardo
@@ -15,12 +17,33 @@ public class Concurso {
     private String descricao;
     private String dataRealizacao;
     private double taxaInscricao;
+    private ArrayList<Prova> provas;
+    private ArrayList<Pessoa> pessoas;
+
+    public ArrayList<Pessoa> getPessoas() {
+        return pessoas;
+    }
+
+    public void addPessoa(Pessoa pessoa) {
+        pessoa.setConcurso(this);
+        pessoas.add(pessoa);
+    }
 
     public Concurso(String sigla, String descricao, String dataRealizacao, double taxaInscricao) {
         this.sigla = sigla;
         this.descricao = descricao;
         this.dataRealizacao = dataRealizacao;
         this.taxaInscricao = taxaInscricao;
+        this.provas = new ArrayList<Prova>();
+    }
+
+    public ArrayList<Prova> getProvas() {
+        return provas;
+    }
+
+    public void addProva(Prova prova) {
+        //TODO colocar setconcurso
+        provas.add(prova);
     }
 
     public void setTaxaInscricao(double taxaInscricao) {
