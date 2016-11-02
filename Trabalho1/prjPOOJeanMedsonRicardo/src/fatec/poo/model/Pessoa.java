@@ -16,11 +16,20 @@ public class Pessoa {
     private String endereco;
     private String telefone;
     private String email;
+    private Concurso concurso;
 
     public Pessoa(String cpf, String nome, String endereco) {
         this.cpf = cpf;
         this.nome = nome;
         this.endereco = endereco;
+    }
+
+    public Concurso getConcurso() {
+        return concurso;
+    }
+
+    public void setConcurso(Concurso concurso) {
+        this.concurso = concurso;
     }
     
     public void setTelefone(String telefone) {
