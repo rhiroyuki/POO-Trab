@@ -42,7 +42,7 @@ public class Concurso {
     }
 
     public void addProva(Prova prova) {
-        //TODO colocar setconcurso
+        prova.setConcurso(this);
         provas.add(prova);
     }
 
