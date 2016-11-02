@@ -8,8 +8,17 @@ public class Prova {
     private double nota;
     private int qtdeQuestoes;
     private ArrayList<Questao> questoes;
-    
+    private Concurso concurso;
 
+    public Concurso getConcurso() {
+        return concurso;
+    }
+
+    public void setConcurso(Concurso concurso) {
+        this.concurso = concurso;
+    }
+    
+    
     public Prova(String materia, int qtdeQuestoes) {
         this.materia = materia;
         this.qtdeQuestoes = qtdeQuestoes;
