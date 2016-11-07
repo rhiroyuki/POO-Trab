@@ -63,8 +63,8 @@ public class Prova {
     }
       
     public void addQuestao(Questao q){
-        questoes[qtdAdic]= q;
-        qtdAdic++;
+        if(qtdAdic < qtdeQuestoes)
+            questoes[qtdAdic++]= q;            
     }
     
     public void efetuarCorrecao(){
