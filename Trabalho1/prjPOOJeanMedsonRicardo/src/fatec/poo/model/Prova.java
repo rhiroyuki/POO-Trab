@@ -1,15 +1,24 @@
 package fatec.poo.model;
 
-import java.util.ArrayList;
 
 public class Prova {
     private String materia;
     private int peso;
     private double nota;
     private int qtdeQuestoes;
-    private ArrayList<Questao> questoes;
+    private Questao questoes[];
     private Concurso concurso;
+    private Candidato candidato;
+    int qtdAdic=0;
 
+    public Candidato getCandidato() {
+        return candidato;
+    }
+
+    public void setCandidato(Candidato candidato) {
+        this.candidato = candidato;
+    }
+    
     public Concurso getConcurso() {
         return concurso;
     }
@@ -22,7 +31,7 @@ public class Prova {
     public Prova(String materia, int qtdeQuestoes) {
         this.materia = materia;
         this.qtdeQuestoes = qtdeQuestoes;
-        questoes = new ArrayList<>(qtdeQuestoes);
+        questoes = new Questao[qtdeQuestoes];
     }
 
     public String getMateria() {
@@ -49,21 +58,22 @@ public class Prova {
         return qtdeQuestoes;
     }
 
-    public ArrayList<Questao> getQuestoes() {
+    public Questao[] getQuestoes() {
         return questoes;
     }
-    
+      
     public void addQuestao(Questao q){
-        questoes.add(q);
+        questoes[qtdAdic]= q;
+        qtdAdic++;
     }
     
-    public int efetuarCorrecao(){
-        int nota = 0;
-        for(int i=0;i<qtdeQuestoes;i++){
-            if(questoes.get(i).getResposta() == questoes.get(i).getAlternativaGabrito()){
-                nota += 1;
+    public void efetuarCorrecao(){
+        for(int i=0; i<qtdeQuestoes;i++){
+            if(questoes[i].getResposta() == questoes[i].getAlternativaGabrito()){
+                nota++;
             }
         }
-        return(nota);
     }
+    
+    
 }
