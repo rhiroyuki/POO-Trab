@@ -18,10 +18,12 @@ public class Candidato extends Pessoa{
     private double media;
     private ArrayList<Prova> provas;
 
-    public Candidato(String cpf, String nome, String endereco) {
+    public Candidato(String inscricao, String cpf, String nome, String endereco) {
         super(cpf, nome, endereco);
+        this.inscricao = inscricao;
+        provas = new ArrayList<Prova>();
     }
-
+    
     public String getInscricao() {
         return inscricao;
     }
