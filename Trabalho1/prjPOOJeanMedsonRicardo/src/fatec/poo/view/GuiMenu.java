@@ -93,7 +93,6 @@ public class GuiMenu extends javax.swing.JFrame {
     private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         dispose();
     }//GEN-LAST:event_jMenuItemSairActionPerformed
-
     private void jMenuItemMontarProvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMontarProvaActionPerformed
         new GuiMontarProva().setVisible(true);
     }//GEN-LAST:event_jMenuItemMontarProvaActionPerformed
