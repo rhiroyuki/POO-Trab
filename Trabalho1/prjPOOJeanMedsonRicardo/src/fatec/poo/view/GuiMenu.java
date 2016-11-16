@@ -30,36 +30,47 @@ public class GuiMenu extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItemFiscal = new javax.swing.JMenuItem();
+        jMenuItemCandidato = new javax.swing.JMenuItem();
+        jMenuItemMontarProva = new javax.swing.JMenuItem();
+        jMenuItemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu");
 
         jMenu1.setText("Cadastro");
 
-        jMenuItem1.setText("Fiscal");
-        jMenu1.add(jMenuItem1);
-
-        jMenuItem2.setText("Candidato");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Montar Prova");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemFiscal.setText("Fiscal");
+        jMenuItemFiscal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                jMenuItemFiscalActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(jMenuItemFiscal);
 
-        jMenuItem4.setText("Sair");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemCandidato.setText("Candidato");
+        jMenuItemCandidato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                jMenuItemCandidatoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(jMenuItemCandidato);
+
+        jMenuItemMontarProva.setText("Montar Prova");
+        jMenuItemMontarProva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemMontarProvaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemMontarProva);
+
+        jMenuItemSair.setText("Sair");
+        jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSairActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemSair);
 
         jMenuBar1.add(jMenu1);
 
@@ -79,13 +90,27 @@ public class GuiMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMenuItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSairActionPerformed
         dispose();
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_jMenuItemSairActionPerformed
 
+<<<<<<< Updated upstream
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         new guiMontarProva().setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+=======
+    private void jMenuItemMontarProvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemMontarProvaActionPerformed
+        new GuiMontarProva().setVisible(true);
+    }//GEN-LAST:event_jMenuItemMontarProvaActionPerformed
+
+    private void jMenuItemFiscalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemFiscalActionPerformed
+        new GuiFiscal().setVisible(true);
+    }//GEN-LAST:event_jMenuItemFiscalActionPerformed
+
+    private void jMenuItemCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemCandidatoActionPerformed
+        new GuiCandidato().setVisible(true);
+    }//GEN-LAST:event_jMenuItemCandidatoActionPerformed
+>>>>>>> Stashed changes
 
     /**
      * @param args the command line arguments
@@ -125,9 +150,9 @@ public class GuiMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItemCandidato;
+    private javax.swing.JMenuItem jMenuItemFiscal;
+    private javax.swing.JMenuItem jMenuItemMontarProva;
+    private javax.swing.JMenuItem jMenuItemSair;
     // End of variables declaration//GEN-END:variables
 }
