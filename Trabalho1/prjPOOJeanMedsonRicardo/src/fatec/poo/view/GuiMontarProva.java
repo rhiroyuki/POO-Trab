@@ -64,6 +64,7 @@ public class GuiMontarProva extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Montar Prova");
+        setName("guiMontarProva"); // NOI18N
 
         pnlProva.setBorder(javax.swing.BorderFactory.createTitledBorder("Prova"));
 
@@ -121,21 +122,26 @@ public class GuiMontarProva extends javax.swing.JFrame {
 
         txtaEnunciado.setColumns(20);
         txtaEnunciado.setRows(5);
+        txtaEnunciado.setEnabled(false);
         jScrollPane1.setViewportView(txtaEnunciado);
 
         pnlGabarito.setBorder(javax.swing.BorderFactory.createTitledBorder("Gabarito"));
 
         grbtnGabarito.add(rbtnA);
         rbtnA.setText("A");
+        rbtnA.setEnabled(false);
 
         grbtnGabarito.add(rbtnB);
         rbtnB.setText("B");
+        rbtnB.setEnabled(false);
 
         grbtnGabarito.add(rbtnC);
         rbtnC.setText("C");
+        rbtnC.setEnabled(false);
 
         grbtnGabarito.add(rbtnD);
         rbtnD.setText("D");
+        rbtnD.setEnabled(false);
 
         javax.swing.GroupLayout pnlGabaritoLayout = new javax.swing.GroupLayout(pnlGabarito);
         pnlGabarito.setLayout(pnlGabaritoLayout);
