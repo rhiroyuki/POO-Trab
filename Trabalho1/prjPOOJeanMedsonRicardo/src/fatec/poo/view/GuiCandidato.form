@@ -29,29 +29,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblCpf" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNome" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblMedia" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblIncricao" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="txtIncricao" min="-2" pref="105" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="txtNome" alignment="0" min="-2" pref="180" max="-2" attributes="0"/>
-                                  <Component id="txtEmail" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="txtEndereco" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="txtFormatCpf" alignment="1" min="-2" pref="180" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="lblMostraMedia" min="-2" pref="60" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
                       <Component id="btnConsultar" min="-2" pref="80" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnIncluir" min="-2" pref="80" max="-2" attributes="0"/>
@@ -62,6 +39,29 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnSair" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblCpf" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblNome" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblIncricao" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTelefone" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblMedia" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblMostraMedia" min="-2" pref="60" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="txtEmail" max="32767" attributes="0"/>
+                              <Component id="txtIncricao" alignment="0" min="-2" pref="105" max="-2" attributes="0"/>
+                              <Component id="txtNome" alignment="0" pref="180" max="32767" attributes="0"/>
+                              <Component id="txtEndereco" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtFormatCpf" alignment="0" pref="180" max="32767" attributes="0"/>
+                              <Component id="txtTelefone" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace min="0" pref="9" max="32767" attributes="0"/>
           </Group>
@@ -70,7 +70,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblIncricao" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtIncricao" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -90,7 +90,12 @@
                   <Component id="lblEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtEndereco" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTelefone" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblEmail" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -100,7 +105,7 @@
                   <Component id="lblMedia" min="-2" max="-2" attributes="0"/>
                   <Component id="lblMostraMedia" min="-2" pref="19" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnConsultar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnIncluir" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -108,7 +113,7 @@
                   <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnSair" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -226,6 +231,18 @@
           </Border>
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtTelefone">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+        <Property name="name" type="java.lang.String" value="txtEmail" noResource="true"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTelefone">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Telefone"/>
+        <Property name="name" type="java.lang.String" value="lblEmail" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

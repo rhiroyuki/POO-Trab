@@ -49,6 +49,7 @@ public class GuiFiscal extends javax.swing.JFrame {
         lblCpf = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro Fiscal");
         setName("guiFiscal"); // NOI18N
 
         btnConsultar.setText("Consultar");
@@ -131,7 +132,7 @@ public class GuiFiscal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNome)
                             .addComponent(lblCodigo))
-                        .addGap(22, 22, 22)
+                        .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
