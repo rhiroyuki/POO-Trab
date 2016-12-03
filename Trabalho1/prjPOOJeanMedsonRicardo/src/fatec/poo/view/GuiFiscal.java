@@ -1,20 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package fatec.poo.view;
 
-/**
- *
- * @author Jean
- */
+import fatec.poo.control.Conexao;
+import fatec.poo.control.DaoFiscal;
+import fatec.poo.model.Fiscal;
+import javax.swing.JOptionPane;
+
 public class GuiFiscal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form GuiFiscal
-     */
     public GuiFiscal() {
         initComponents();
     }
@@ -51,9 +43,22 @@ public class GuiFiscal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cadastro Fiscal");
         setName("guiFiscal"); // NOI18N
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         btnConsultar.setText("Consultar");
         btnConsultar.setName("btnConsultar"); // NOI18N
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         txtEndereco.setEnabled(false);
         txtEndereco.setName("txtEndereco"); // NOI18N
@@ -74,10 +79,20 @@ public class GuiFiscal extends javax.swing.JFrame {
         btnIncluir.setText("Incluir");
         btnIncluir.setEnabled(false);
         btnIncluir.setName("btnIncluir"); // NOI18N
+        btnIncluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIncluirActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
         btnAlterar.setName("btnAlterar"); // NOI18N
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         lblEndereco.setText("Endereço:");
         lblEndereco.setName("lblEndereco"); // NOI18N
@@ -85,6 +100,11 @@ public class GuiFiscal extends javax.swing.JFrame {
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
         btnExcluir.setName("btnExcluir"); // NOI18N
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         lblNome.setText("Nome:");
         lblNome.setName("lblNome"); // NOI18N
@@ -94,6 +114,11 @@ public class GuiFiscal extends javax.swing.JFrame {
 
         btnSair.setText("Sair");
         btnSair.setName("btnSair"); // NOI18N
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         lblEmail.setText("E-mail:");
         lblEmail.setName("lblEmail"); // NOI18N
@@ -133,9 +158,9 @@ public class GuiFiscal extends javax.swing.JFrame {
                             .addComponent(lblNome)
                             .addComponent(lblCodigo))
                         .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(txtCodigo)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -154,14 +179,12 @@ public class GuiFiscal extends javax.swing.JFrame {
                             .addComponent(lblEmail)
                             .addComponent(lblCpf))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtFormatCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtEndereco, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtEmail)
-                                    .addComponent(txtTelefone)
-                                    .addComponent(txtLocal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtFormatCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(txtEmail)
+                            .addComponent(txtTelefone)
+                            .addComponent(txtLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                            .addComponent(txtEndereco))))
                 .addGap(0, 12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -211,6 +234,145 @@ public class GuiFiscal extends javax.swing.JFrame {
     private void txtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodigoActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        conexao = new Conexao("ricardo", "asdf");
+        conexao.setDriver("oracle.jdbc.driver.OracleDriver");
+        conexao.setConnectionString("jdbc:oracle:thin:@localhost:1521:xe");
+        daoFiscal = new DaoFiscal(conexao.conectar());
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        conexao.fecharConexao();
+        dispose();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        fiscal = null;
+        fiscal = daoFiscal.consultar(txtCodigo.getText());
+
+        if (fiscal == null) {
+            txtCodigo.setEnabled(false);
+            txtNome.setEnabled(true);
+            txtEmail.setEnabled(true);
+            txtEndereco.setEnabled(true);
+            txtFormatCpf.setEnabled(true);
+            txtLocal.setEnabled(true);
+            txtTelefone.setEnabled(true);
+            btnConsultar.setEnabled(false);
+            btnIncluir.setEnabled(true);
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+
+        } else {
+            txtCodigo.setEnabled(false);
+
+            txtEmail.setText(fiscal.getEmail());
+            txtEndereco.setText(fiscal.getEndereco());
+            txtFormatCpf.setText(fiscal.getCpf());
+            txtLocal.setText(fiscal.getLocal());
+            txtNome.setText(fiscal.getNome());
+            txtTelefone.setText(fiscal.getTelefone());
+
+            txtCodigo.setEnabled(false);
+            txtEmail.setEnabled(true);
+            txtEndereco.setEnabled(true);
+            txtFormatCpf.setEnabled(true);
+            txtTelefone.setEnabled(true);
+            txtLocal.setEnabled(true);
+            txtNome.setEnabled(true);
+
+            btnConsultar.setEnabled(false);
+            btnIncluir.setEnabled(false);
+            btnAlterar.setEnabled(true);
+            btnExcluir.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Confirma Inclusão?") == 0) {
+            fiscal = new Fiscal(txtCodigo.getText(), txtFormatCpf.getText().replace(".", "").replace("-", "").trim(), txtNome.getText(), txtEndereco.getText());
+            fiscal.setEmail(txtEmail.getText());
+            fiscal.setLocal(txtLocal.getText());
+            fiscal.setTelefone(txtTelefone.getText());
+            daoFiscal.inserir(fiscal);
+        }
+        txtCodigo.setText("");
+        txtEmail.setText("");
+        txtEndereco.setText("");
+        txtFormatCpf.setText("");
+        txtLocal.setText("");
+        txtNome.setText("");
+        txtTelefone.setText("");
+        txtCodigo.setEnabled(true);
+        txtEmail.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtFormatCpf.setEnabled(false);
+        txtLocal.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        btnConsultar.setEnabled(true);
+        btnIncluir.setEnabled(false);
+    }//GEN-LAST:event_btnIncluirActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Confirma Exclusão?") == 0) {
+            daoFiscal.excluir(fiscal);
+            txtCodigo.setText("");
+            txtEmail.setText("");
+            txtEndereco.setText("");
+            txtFormatCpf.setText("");
+            txtLocal.setText("");
+            txtNome.setText("");
+            txtTelefone.setText("");
+            txtCodigo.setEnabled(true);
+            txtEmail.setEnabled(false);
+            txtEndereco.setEnabled(false);
+            txtFormatCpf.setEnabled(false);
+            txtLocal.setEnabled(false);
+            txtNome.setEnabled(false);
+            txtTelefone.setEnabled(false);
+            txtCodigo.requestFocus();
+            btnConsultar.setEnabled(true);
+            btnIncluir.setEnabled(false);
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Confirma Alteração?") == 0) {
+            fiscal = new Fiscal(txtCodigo.getText(), txtFormatCpf.getText().replace(".", "").replace("-", "").trim(), txtNome.getText(), txtEndereco.getText());
+            fiscal.setEmail(txtEmail.getText());
+            fiscal.setLocal(txtLocal.getText());
+            fiscal.setTelefone(txtTelefone.getText());
+            daoFiscal.alterar(fiscal);
+        }
+
+        txtCodigo.setText("");
+        txtEmail.setText("");
+        txtEndereco.setText("");
+        txtFormatCpf.setText("");
+        txtLocal.setText("");
+        txtNome.setText("");
+        txtTelefone.setText("");
+        txtCodigo.setEnabled(true);
+        txtEmail.setEnabled(false);
+        txtEndereco.setEnabled(false);
+        txtFormatCpf.setEnabled(false);
+        txtLocal.setEnabled(false);
+        txtLocal.setEnabled(false);
+        txtNome.setEnabled(false);
+        txtTelefone.setEnabled(false);
+        btnConsultar.setEnabled(true);
+        btnIncluir.setEnabled(false);
+        btnAlterar.setEnabled(false);
+        btnExcluir.setEnabled(false);
+    }//GEN-LAST:event_btnAlterarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -268,4 +430,8 @@ public class GuiFiscal extends javax.swing.JFrame {
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
+    private DaoFiscal daoFiscal = null;
+    private Fiscal fiscal = null;
+    private Conexao conexao = null;
+
 }
