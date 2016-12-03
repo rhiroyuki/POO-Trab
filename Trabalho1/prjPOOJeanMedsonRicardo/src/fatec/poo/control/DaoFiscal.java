@@ -25,7 +25,6 @@ public class DaoFiscal {
             ps.setString(5, fiscal.getEndereco());
             ps.setString(6, fiscal.getTelefone());
             ps.setString(7, fiscal.getEmail());
-
             ps.execute();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -82,5 +81,4 @@ public class DaoFiscal {
             System.out.println(ex.toString());
         }
     }
-
 }
