@@ -3,6 +3,7 @@ package fatec.poo.view;
 import fatec.poo.control.Conexao;
 import fatec.poo.control.DaoFiscal;
 import fatec.poo.model.Fiscal;
+import fatec.poo.model.ValidaCpf;
 import javax.swing.JOptionPane;
 
 public class GuiFiscal extends javax.swing.JFrame {
@@ -157,10 +158,10 @@ public class GuiFiscal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNome)
                             .addComponent(lblCodigo))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                            .addComponent(txtCodigo)))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnConsultar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -191,13 +192,13 @@ public class GuiFiscal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCodigo)
                     .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblNome))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNome)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtFormatCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,7 +237,7 @@ public class GuiFiscal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        conexao = new Conexao("ricardo", "asdf");
+        conexao = new Conexao("system", "123456789");
         conexao.setDriver("oracle.jdbc.driver.OracleDriver");
         conexao.setConnectionString("jdbc:oracle:thin:@localhost:1521:xe");
         daoFiscal = new DaoFiscal(conexao.conectar());
@@ -254,6 +255,7 @@ public class GuiFiscal extends javax.swing.JFrame {
         if (fiscal == null) {
             txtCodigo.setEnabled(false);
             txtNome.setEnabled(true);
+            txtNome.requestFocus();
             txtEmail.setEnabled(true);
             txtEndereco.setEnabled(true);
             txtFormatCpf.setEnabled(true);
@@ -291,11 +293,17 @@ public class GuiFiscal extends javax.swing.JFrame {
 
     private void btnIncluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIncluirActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Confirma Inclusão?") == 0) {
-            fiscal = new Fiscal(txtCodigo.getText(), txtFormatCpf.getText().replace(".", "").replace("-", "").trim(), txtNome.getText(), txtEndereco.getText());
-            fiscal.setEmail(txtEmail.getText());
-            fiscal.setLocal(txtLocal.getText());
-            fiscal.setTelefone(txtTelefone.getText());
-            daoFiscal.inserir(fiscal);
+            
+            if (ValidaCpf.isCPF(txtFormatCpf.getText().replace(".", "").replace("-", "").trim()) == true){
+                fiscal = new Fiscal(txtCodigo.getText(),txtFormatCpf.getText().replace(".", "").replace("-", "").trim() , txtNome.getText(), txtEndereco.getText());
+                fiscal.setEmail(txtEmail.getText());
+                fiscal.setLocal(txtLocal.getText());
+                fiscal.setTelefone(txtTelefone.getText());
+                daoFiscal.inserir(fiscal);
+            }else{
+                JOptionPane.showMessageDialog(null,"CPF INVALIDO");
+            }
+            
         }
         txtCodigo.setText("");
         txtEmail.setText("");
@@ -346,11 +354,17 @@ public class GuiFiscal extends javax.swing.JFrame {
 
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         if (JOptionPane.showConfirmDialog(null, "Confirma Alteração?") == 0) {
-            fiscal = new Fiscal(txtCodigo.getText(), txtFormatCpf.getText().replace(".", "").replace("-", "").trim(), txtNome.getText(), txtEndereco.getText());
-            fiscal.setEmail(txtEmail.getText());
-            fiscal.setLocal(txtLocal.getText());
-            fiscal.setTelefone(txtTelefone.getText());
-            daoFiscal.alterar(fiscal);
+            
+            if (ValidaCpf.isCPF(txtFormatCpf.getText().replace(".", "").replace("-", "").trim()) == true){
+                fiscal = new Fiscal(txtCodigo.getText(),txtFormatCpf.getText().replace(".", "").replace("-", "").trim() , txtNome.getText(), txtEndereco.getText());
+                fiscal.setEmail(txtEmail.getText());
+                fiscal.setLocal(txtLocal.getText());
+                fiscal.setTelefone(txtTelefone.getText());
+                daoFiscal.alterar(fiscal);
+            }else{
+                JOptionPane.showMessageDialog(null,"CPF INVALIDO");
+            }
+            
         }
 
         txtCodigo.setText("");
