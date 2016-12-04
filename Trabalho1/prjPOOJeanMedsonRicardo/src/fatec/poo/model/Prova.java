@@ -9,7 +9,7 @@ public class Prova {
     private Questao questoes[];
     private Concurso concurso;
     private Candidato candidato;
-    int qtdAdic=0;
+    private int qtdAdic=0;
 
     public Candidato getCandidato() {
         return candidato;
