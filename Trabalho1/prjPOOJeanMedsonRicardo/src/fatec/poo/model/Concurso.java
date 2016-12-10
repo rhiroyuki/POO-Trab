@@ -29,11 +29,10 @@ public class Concurso {
         pessoas.add(pessoa);
     }
 
-    public Concurso(String sigla, String descricao, String dataRealizacao, double taxaInscricao) {
+    public Concurso(String sigla, String descricao, String dataRealizacao) {
         this.sigla = sigla;
         this.descricao = descricao;
         this.dataRealizacao = dataRealizacao;
-        this.taxaInscricao = taxaInscricao;
         this.provas = new ArrayList<Prova>();
     }
 

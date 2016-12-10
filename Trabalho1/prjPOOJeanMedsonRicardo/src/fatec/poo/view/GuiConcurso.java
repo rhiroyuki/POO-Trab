@@ -5,6 +5,11 @@
  */
 package fatec.poo.view;
 
+import fatec.poo.control.Conexao;
+import fatec.poo.control.DaoConcurso;
+import fatec.poo.model.Concurso;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Medson
@@ -39,9 +44,17 @@ public class GuiConcurso extends javax.swing.JFrame {
         txtDescricao = new javax.swing.JTextField();
         txtSigla = new javax.swing.JTextField();
         txtInscricao = new javax.swing.JTextField();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        txtFDataRealizacao = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setText("Sigla:");
 
@@ -52,36 +65,61 @@ public class GuiConcurso extends javax.swing.JFrame {
         jLabel4.setText("Taxa de Inscrição:");
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnSalvar.setText("Salvar");
         btnSalvar.setEnabled(false);
         btnSalvar.setMaximumSize(new java.awt.Dimension(82, 28));
         btnSalvar.setMinimumSize(new java.awt.Dimension(82, 28));
         btnSalvar.setPreferredSize(new java.awt.Dimension(82, 28));
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnAlterar.setText("Alterar");
         btnAlterar.setEnabled(false);
         btnAlterar.setMaximumSize(new java.awt.Dimension(82, 28));
         btnAlterar.setMinimumSize(new java.awt.Dimension(82, 28));
         btnAlterar.setPreferredSize(new java.awt.Dimension(82, 28));
+        btnAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("Excluir");
         btnExcluir.setEnabled(false);
         btnExcluir.setMaximumSize(new java.awt.Dimension(82, 28));
         btnExcluir.setMinimumSize(new java.awt.Dimension(82, 28));
         btnExcluir.setPreferredSize(new java.awt.Dimension(82, 28));
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
 
         btnSair.setText("Sair");
         btnSair.setMaximumSize(new java.awt.Dimension(82, 28));
         btnSair.setMinimumSize(new java.awt.Dimension(82, 28));
         btnSair.setPreferredSize(new java.awt.Dimension(82, 28));
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         txtDescricao.setEnabled(false);
 
         txtInscricao.setEnabled(false);
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        jFormattedTextField1.setEnabled(false);
+        txtFDataRealizacao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        txtFDataRealizacao.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,7 +153,7 @@ public class GuiConcurso extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtFDataRealizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtInscricao, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
@@ -133,7 +171,7 @@ public class GuiConcurso extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtFDataRealizacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
@@ -150,6 +188,117 @@ public class GuiConcurso extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        conexao = new Conexao("system", "root");
+        conexao.setDriver("oracle.jdbc.driver.OracleDriver");
+        conexao.setConnectionString("jdbc:oracle:thin:@localhost:1521:xe");
+        daoConcurso = new DaoConcurso(conexao.conectar());
+    }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        conexao.fecharConexao();
+        dispose();
+    }//GEN-LAST:event_formWindowClosing
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        concurso = null;
+        concurso = daoConcurso.consultar(txtSigla.getText());
+
+        if (concurso == null) {
+            txtSigla.setEnabled(false);
+            txtDescricao.setEnabled(true);
+            txtDescricao.requestFocus();
+            txtInscricao.setEnabled(true);
+            txtFDataRealizacao.setEnabled(true);
+            btnConsultar.setEnabled(false);
+            btnSalvar.setEnabled(true);
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+
+        } else {
+            txtSigla.setEnabled(false);
+
+            txtDescricao.setText(concurso.getDescricao());
+            txtInscricao.setText(String.valueOf(concurso.getTaxaInscricao()));
+            txtFDataRealizacao.setText(concurso.getDataRealizacao());
+
+            txtSigla.setEnabled(false);
+            txtDescricao.setEnabled(true);
+            txtDescricao.requestFocus();
+            txtInscricao.setEnabled(true);
+            txtFDataRealizacao.setEnabled(true);
+
+            btnConsultar.setEnabled(false);
+            btnSalvar.setEnabled(false);
+            btnAlterar.setEnabled(true);
+            btnExcluir.setEnabled(true);
+        }
+    }//GEN-LAST:event_btnConsultarActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Confirma Inclusão?") == 0) {
+            concurso = new Concurso(txtSigla.getText(),txtDescricao.getText(),txtFDataRealizacao.getText());
+            concurso.setTaxaInscricao(Double.parseDouble(txtInscricao.getText()));
+            daoConcurso.inserir(concurso);
+            
+            txtSigla.setText("");
+            txtDescricao.setText("");
+            txtInscricao.setText("");
+            txtFDataRealizacao.setText("");
+            txtSigla.setEnabled(true);
+            txtDescricao.setEnabled(false);
+            txtInscricao.setEnabled(false);
+            txtFDataRealizacao.setEnabled(false);
+            btnConsultar.setEnabled(true);
+            btnSalvar.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Confirma Alteração?") == 0) {
+            concurso = new Concurso(txtSigla.getText(),txtDescricao.getText(),txtFDataRealizacao.getText());
+            concurso.setTaxaInscricao(Double.parseDouble(txtInscricao.getText()));
+            daoConcurso.alterar(concurso);
+            txtSigla.setText("");
+            txtDescricao.setText("");
+            txtInscricao.setText("");
+            txtFDataRealizacao.setText("");
+            txtSigla.setEnabled(true);
+            txtDescricao.setEnabled(false);
+            txtInscricao.setEnabled(false);
+            txtFDataRealizacao.setEnabled(false);
+            btnConsultar.setEnabled(true);
+            btnSalvar.setEnabled(false);
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnAlterarActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "Confirma Exclusão?") == 0){
+            daoConcurso.excluir(concurso);
+            txtSigla.setText("");
+            txtDescricao.setText("");
+            txtInscricao.setText("");
+            txtFDataRealizacao.setText("");
+            txtSigla.setEnabled(true);
+            txtDescricao.setEnabled(false);
+            txtInscricao.setEnabled(false);
+            txtFDataRealizacao.setEnabled(false);
+            txtSigla.requestFocus();
+            btnConsultar.setEnabled(true);
+            btnSalvar.setEnabled(false);
+            btnAlterar.setEnabled(false);
+            btnExcluir.setEnabled(false);
+            
+            
+        }
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,19 +334,21 @@ public class GuiConcurso extends javax.swing.JFrame {
             }
         });
     }
-
+    private DaoConcurso daoConcurso = null;
+    private Concurso concurso = null;
+    private Conexao conexao = null;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField txtDescricao;
+    private javax.swing.JFormattedTextField txtFDataRealizacao;
     private javax.swing.JTextField txtInscricao;
     private javax.swing.JTextField txtSigla;
     // End of variables declaration//GEN-END:variables

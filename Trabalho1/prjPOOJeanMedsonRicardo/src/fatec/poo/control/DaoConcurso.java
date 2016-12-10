@@ -20,7 +20,7 @@ public class DaoConcurso {
             ps.setString(1, concurso.getSigla());
             ps.setString(2, concurso.getDescricao());
             ps.setString(3, concurso.getDataRealizacao());
-            ps.setString(4, Double.toString(concurso.getTaxaInscricao()));
+            ps.setDouble(4, concurso.getTaxaInscricao());
             
             ps.execute();
         }catch (SQLException ex){
@@ -31,11 +31,11 @@ public class DaoConcurso {
     public void alterar(Concurso concurso) {
         PreparedStatement ps = null;
         try {
-            ps = conn.prepareStatement("UPDATE TBCONCURSO set DESCRICAO_CONCURSO = ?, DATAREALIZACAO_CONCURSO = ?, TAXAINSCRICAO_CONCURSO = ? WHERE SIGLA_CONCURSO = ?)");
+            ps = conn.prepareStatement("UPDATE TBCONCURSO set DESCRICAO_CONCURSO = ?, DATAREALIZACAO_CONCURSO = ?, TAXAINSCRICAO_CONCURSO = ? WHERE SIGLA_CONCURSO = ?");
             
             ps.setString(1, concurso.getDescricao());
             ps.setString(2, concurso.getDataRealizacao());
-            ps.setString(3, Double.toString(concurso.getTaxaInscricao()));
+            ps.setDouble(3, concurso.getTaxaInscricao());
             ps.setString(4, concurso.getSigla());
             
             ps.execute();
@@ -54,7 +54,8 @@ public class DaoConcurso {
             ResultSet rs = ps.executeQuery();
             
             if (rs.next()) {
-                c = new Concurso(sigla, rs.getString("DESCRICAO_CONCURSO"), rs.getString("DATAREALIZACAO_CONCURSO"), Double.parseDouble(rs.getString("TAXAINSCRICAO_CONCURSO")));
+                c = new Concurso(sigla, rs.getString("DESCRICAO_CONCURSO"), rs.getString("DATAREALIZACAO_CONCURSO"));
+                c.setTaxaInscricao(Double.parseDouble(rs.getString("TAXAINSCRICAO_CONCURSO")));
             }
         }catch(SQLException ex) {
             System.out.println(ex.toString());
