@@ -24,11 +24,10 @@ CREATE TABLE tbCandidato
   email_candidato       VARCHAR2(30) 
 );
 
-CREATE TABLE TBCONCURSO
-(
-  SIGLA_CONCURSO 		VARCHAR2(6),
-  DESCRICAO_CONCURSO 		VARCHAR2(30),
-  DATAREALIZACAO_CONCURSO 	VARCHAR2(10),
-  taxaInscricao_CONCURSO 	NUMBER(4,2)
+CREATE TABLE tbconcurso (
+    sigla_concurso            VARCHAR2(6) PRIMARY KEY,
+    descricao_concurso        VARCHAR2(30) NOT NULL,
+    datarealizacao_concurso   VARCHAR2(10) NOT NULL,
+    taxainscricao_concurso    NUMBER(6,2) NOT NULL
 );
 
