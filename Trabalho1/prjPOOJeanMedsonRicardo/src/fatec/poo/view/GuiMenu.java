@@ -33,6 +33,8 @@ public class GuiMenu extends javax.swing.JFrame {
         jMenuItemFiscal = new javax.swing.JMenuItem();
         jMenuItemCandidato = new javax.swing.JMenuItem();
         jMenuItemMontarProva = new javax.swing.JMenuItem();
+        jMenuItemConcurso = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItemSair = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,6 +65,17 @@ public class GuiMenu extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItemMontarProva);
+
+        jMenuItemConcurso.setText("Concurso");
+        jMenuItemConcurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemConcursoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemConcurso);
+
+        jMenuItem1.setText("Alocar Fiscal");
+        jMenu1.add(jMenuItem1);
 
         jMenuItemSair.setText("Sair");
         jMenuItemSair.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +118,10 @@ public class GuiMenu extends javax.swing.JFrame {
         new GuiCandidato().setVisible(true);
     }//GEN-LAST:event_jMenuItemCandidatoActionPerformed
 
+    private void jMenuItemConcursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemConcursoActionPerformed
+        new GuiConcurso().setVisible(true);
+    }//GEN-LAST:event_jMenuItemConcursoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -143,7 +160,9 @@ public class GuiMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemCandidato;
+    private javax.swing.JMenuItem jMenuItemConcurso;
     private javax.swing.JMenuItem jMenuItemFiscal;
     private javax.swing.JMenuItem jMenuItemMontarProva;
     private javax.swing.JMenuItem jMenuItemSair;
