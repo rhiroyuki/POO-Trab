@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class DaoFiscal {
 
@@ -60,6 +61,49 @@ public class DaoFiscal {
 
             if (rs.next()) {
                 f = new Fiscal(codigo, rs.getString("cpf_fiscal"), rs.getString("nome_fiscal"), rs.getString("endereco_fiscal"));
+                f.setEmail(rs.getString("email_fiscal"));
+                f.setLocal(rs.getString("local_fiscal"));
+                f.setTelefone(rs.getString("telefone_fiscal"));
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+        return f;
+    }
+
+    public ArrayList<Fiscal> listarFiscal() {
+        ArrayList<Fiscal> fiscais = new ArrayList<>();
+        Fiscal f = null;
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement("SELECT * FROM tbFiscal ");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                f = new Fiscal(rs.getString("codigo_fiscal"), rs.getString("cpf_fiscal"), rs.getString("nome_fiscal"), rs.getString("endereco_fiscal"));
+                f.setEmail(rs.getString("email_fiscal"));
+                f.setLocal(rs.getString("local_fiscal"));
+                f.setTelefone(rs.getString("telefone_fiscal"));
+                fiscais.add(f);
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+        return fiscais;
+    }
+    
+    public Fiscal consultarNome(String nome) {
+        Fiscal f = null;
+        PreparedStatement ps = null;
+        try {
+            ps = conn.prepareStatement("SELECT * FROM tbFiscal WHERE nome_fiscal = ?");
+
+            ps.setString(1, nome);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                f = new Fiscal(rs.getString("codigo_fiscal"), rs.getString("cpf_fiscal"), nome, rs.getString("endereco_fiscal"));
                 f.setEmail(rs.getString("email_fiscal"));
                 f.setLocal(rs.getString("local_fiscal"));
                 f.setTelefone(rs.getString("telefone_fiscal"));
