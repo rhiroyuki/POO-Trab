@@ -31,3 +31,11 @@ CREATE TABLE tbconcurso (
     taxainscricao_concurso    NUMBER(6,2) NOT NULL
 );
 
+CREATE TABLE tbconcurso_fiscal (
+    sigla_concurso   VARCHAR2(6) NOT NULL
+        REFERENCES tbconcurso,
+    codigo_fiscal    VARCHAR2(8) NOT NULL
+        REFERENCES tbfiscal,
+    PRIMARY KEY ( sigla_concurso,codigo_fiscal )
+);
+
