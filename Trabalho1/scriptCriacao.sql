@@ -1,12 +1,12 @@
 CREATE TABLE tbFiscal
 (
   codigo_fiscal   VARCHAR2(8) PRIMARY KEY,
-  local_fiscal    VARCHAR2(40),
-  cpf_fiscal      VARCHAR2(12),
-  nome_fiscal     VARCHAR2(40),
-  endereco_fiscal VARCHAR2(40),
-  telefone_fiscal VARCHAR2(12),
-  email_fiscal varchar2(30)
+  local_fiscal    VARCHAR2(40) NOT NULL,
+  cpf_fiscal      VARCHAR2(12) NOT NULL,
+  nome_fiscal     VARCHAR2(40) NOT NULL,
+  endereco_fiscal VARCHAR2(40) NOT NULL,
+  telefone_fiscal VARCHAR2(12) NOT NULL,
+  email_fiscal varchar2(30) NOT NULL
 );
 
 CREATE TABLE tbDEPARTAMENTO 
@@ -21,8 +21,8 @@ CREATE TABLE tbCandidato
   cpf_candidato         VARCHAR2(12) NOT NULL,
   nome_candidato        VARCHAR2(40) NOT NULL,
   endereco_candidato    VARCHAR2(40) NOT NULL, 
-  telefone_candidato    VARCHAR2(12), 
-  email_candidato       VARCHAR2(30) 
+  telefone_candidato    VARCHAR2(12) NOT NULL, 
+  email_candidato       VARCHAR2(30) NOT NULL
 );
 
 CREATE TABLE tbconcurso (
