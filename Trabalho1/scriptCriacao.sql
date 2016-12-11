@@ -5,7 +5,8 @@ CREATE TABLE tbFiscal
   cpf_fiscal      VARCHAR2(12),
   nome_fiscal     VARCHAR2(40),
   endereco_fiscal VARCHAR2(40),
-  telefone_fiscal VARCHAR2(12)
+  telefone_fiscal VARCHAR2(12),
+  email_fiscal varchar2(30)
 );
 
 CREATE TABLE tbDEPARTAMENTO 
