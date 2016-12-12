@@ -263,9 +263,9 @@ public class GuiFiscal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCodigoActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        conexao = new Conexao("system", "root");
+        conexao = new Conexao("BD1511031", "A12345678a");
         conexao.setDriver("oracle.jdbc.driver.OracleDriver");
-        conexao.setConnectionString("jdbc:oracle:thin:@localhost:1521:xe");
+        conexao.setConnectionString("jdbc:oracle:thin:@APOLO:1521:xe");
         daoFiscal = new DaoFiscal(conexao.conectar());
     }//GEN-LAST:event_formWindowOpened
 
